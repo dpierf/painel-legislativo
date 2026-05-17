@@ -1,6 +1,11 @@
+# Ambiente e variáveis secretas
 .env
 .venv/
+
+# Cache
 __pycache__/
+
+# Pastas e arquivos não versionados
 data/
 *.parquet
 *.csv
