@@ -1,0 +1,140 @@
+# ── Recorte temporal ───────────────────────────────────────────────────────────
+ano_inicio: 1988
+ano_fim:    2025
+
+
+# ── Termos de busca ────────────────────────────────────────────────────────────
+termos:
+  - erradicação da pobreza
+  - extrema pobreza
+  - pobreza
+  - vulnerabilidade social
+  - transferência de renda
+  - desigualdade social
+  - proteção social
+  - assistência social
+  - inclusão social
+  - bolsa família
+  - benefício de prestação continuada
+  - renda mínima
+
+
+# ── Tipos de propostas ─────────────────────────────────────────────────────────
+tipos_camara:
+  - PL    # Projeto de Lei
+  - PLP   # Projeto de Lei Complementar
+  - PEC   # Proposta de Emenda à Constituição
+  - MPV   # Medida Provisória
+  - PDL   # Projeto de Decreto Legislativo (código novo)
+  - PDC   # Projeto de Decreto Legislativo (código antigo)
+  - PLV   # Projeto de Lei de Conversão
+  - PLS   # Projeto de Lei do Senado tramitando na Câmara
+  - PLC   # Projeto de Lei da Câmara tramitando no Senado
+  - PLN   # Projeto de Lei do Congresso Nacional
+  - PRC   # Projeto de Resolução
+  - PRN   # Projeto de Resolução do Congresso Nacional
+  - MSC   # Mensagem (Executivo)
+  - MSG   # Mensagem (SF)
+  - PFC   # Proposta de Fiscalização e Controle
+  - SUG   # Sugestão (sociedade civil via CLP)
+
+tipos_senado:
+  - Medida Provisória
+  - Projeto de Lei Ordinária
+  - Projeto de Lei da Câmara
+  - Projeto de Lei Complementar
+  - Projeto de Lei do Senado
+  - Projeto de Lei de Conversão
+  - Projeto de Decreto Legislativo
+  - Projeto de Resolução
+  - Proposta de Emenda à Constituição
+  - Proposta de Fiscalização e Controle
+  - Sugestão
+  - Mensagem
+
+tipos_conteudo_senado:
+  - Norma Geral
+  - Norma Jurídica
+  - Norma Jurídica - não categorizada
+  - Fiscalização e controle de atos do Poder Executivo
+  - Sustação de ato do Poder Executivo
+  - Proposta de Fiscalização e Controle
+  - Veto Constitucional
+  - Apreciação de Atos/tratados/acordos internacionais
+
+
+# ── Filtros de qualidade ───────────────────────────────────────────────────────
+assuntos_excluir:
+  - Data comemorativa
+  - Crédito Suplementar
+  - Comunicações
+
+excluir_ementa_regex: >-
+  abre crédito (?:extraordinário|suplementar)
+  |\b(?:comenda|medalha|título honorário|homenagem)\b
+
+
+# ── Performance ────────────────────────────────────────────────────────────────
+sleep_camara:        0.3
+sleep_senado:        0.3
+max_workers_combos:  8
+max_workers_autoria: 20
+
+
+# ── Avaliação LLM ──────────────────────────────────────────────────────────────
+avaliacao:
+  provider:       mistral
+  model:          ministral-8b-2410
+  sleep:          1
+  nota_corte:     6.0
+
+  categorias:
+    - Assistência Social
+    - Benefício de Prestação Continuada
+    - Pobreza
+    - Desigualdade Social
+    - Renda Mínima
+    - Proteção Social
+    - Erradicação da Pobreza
+    - Inclusão Social
+    - Bolsa Família
+    - Extrema Pobreza
+    - Transferência de Renda
+    - Vulnerabilidade Social
+
+  escala:
+    "9.0-10.0": Proposição trata do tema como objeto central e exclusivo
+    "7.5-8.75": Tema é objeto principal; outros elementos são secundários
+    "6.0-7.25": Tema é relevante e substantivo, ainda que não exclusivo
+    "4.0-5.75": Tema aparece como elemento importante mas não central
+    "2.0-3.75": Tema mencionado de forma tangencial ou instrumental
+    "0.0-1.75": Tema ausente ou meramente retórico
+
+  siglas:
+    BPC:      Benefício de Prestação Continuada
+    LOAS:     Lei Orgânica da Assistência Social
+    PBF:      Programa Bolsa Família
+    RMV:      Renda Mensal Vitalícia
+    PETI:     Programa de Erradicação do Trabalho Infantil
+    PAA:      Programa de Aquisição de Alimentos
+    PNAE:     Programa Nacional de Alimentação Escolar
+    SUAS:     Sistema Único de Assistência Social
+    FNAS:     Fundo Nacional de Assistência Social
+    CRAS:     Centro de Referência de Assistência Social
+    CREAS:    Centro de Referência Especializado de Assistência Social
+    CadÚnico: Cadastro Único para Programas Sociais
+    BSM:      Brasil Sem Miséria
+    ProJovem: Programa Nacional de Inclusão de Jovens
+    AE:       Auxílio Emergencial
+    
+  inclusao:
+    - A proposição cria, altera ou regula políticas, programas ou benefícios voltados a populações em situação de pobreza ou vulnerabilidade social
+    - Alterações diretas de acesso, valor ou critérios de elegibilidade de benefícios de proteção social são sempre objeto central, independentemente de serem expansivas ou restritivas
+    - A proposição tem impacto direto sobre renda, acesso a serviços ou direitos sociais de populações vulneráveis
+    - A proposição trata de transferência de renda, assistência social ou proteção social como objeto substantivo
+
+  exclusao:
+    - Pobreza ou desigualdade aparecem apenas como justificativa retórica, sem ser o objeto da proposição
+    - A proposição trata de outro tema onde o tema aparece tangencialmente
+    - A proposição é exclusivamente orçamentária, comemorativa ou de organização administrativa interna
+    - O termo foi capturado por indexação indireta sem relação substantiva com o objeto da proposição

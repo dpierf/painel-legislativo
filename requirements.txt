@@ -1,0 +1,10 @@
+dash==4.1.0
+dash_bootstrap_components==2.0.4
+mistralai==2.4.5
+numpy==2.4.5
+pandas==3.0.3
+plotly==6.7.0
+python-dotenv==1.2.2
+PyYAML==6.0.3
+Requests==2.34.2
+tqdm==4.67.3
